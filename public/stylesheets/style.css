@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+th {
+  border: 2px solid black;
+  color: white;
+  background-color: orange;
+}
+
+td {
+  text-align: center;
+  border: 1px dotted black;
+}
+
+a {
+  border-style: none;
+}
