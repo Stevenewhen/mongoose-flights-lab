@@ -14,7 +14,6 @@ const destinationSchema = new Schema({
   },
 })
 
-
 const flightSchema = new Schema({
   airline: {
     type: String,
@@ -40,9 +39,13 @@ const flightSchema = new Schema({
       return oneYearLater.toISOString().slice(0,16)
     }
   },
-  destinations: [destinationSchema]
+  destinations: [destinationSchema],
+  tickets: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Ticket',
+  }],
 }, {
-    timestamps: true
+  timestamps: true,
 });
 
 module.exports = mongoose.model('Flight', flightSchema)

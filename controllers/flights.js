@@ -1,4 +1,5 @@
-const Flight = require('../models/flights')
+const Flight = require('../models/flight');
+const Ticket = require('../models/ticket');
 
 
 module.exports = {
@@ -10,9 +11,6 @@ module.exports = {
     addDestination
 };
 
-
-
-//Add Destination in Show
 async function addDestination(req, res) {
     try {
         const flight = await Flight.findById(req.params.id);
@@ -29,12 +27,19 @@ async function addDestination(req, res) {
     }
 }
 
-async function show(req,res) {
-    const flight = await Flight.findById(req.params.id)
-    res.render('flights/show', {
-        airline: 'Airline Detail',
-        flight
-    })
+async function show(req, res) {
+    try {
+        const flight = await Flight.findById(req.params.id);
+        const tickets = await Ticket.find({flight: flight._id});
+        res.render('flights/show', {
+            airline: 'Airline Detail',
+            flight,
+            tickets
+        });
+    } catch (error) {
+        console.error(error);
+        res.redirect('/flights');
+    }
 }
 
 async function index(req, res) {
@@ -45,7 +50,6 @@ async function index(req, res) {
      })
 }
 
-//added arrivalDate needned to do an if function in order to check array for destination
 function addFlight(req, res) {
     const newFlight = new Flight();
     const dt = newFlight.departs;

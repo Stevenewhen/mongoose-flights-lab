@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<form action="/flights/<%= flightId %>/tickets" method="POST">
+    <input type="text" id="seatInput" name="seat" placeholder="Seat" pattern="[A-F][1-9]\d?" required oninput="convertSeatToUppercase()">
+    <input type="number" name="price" placeholder="Price" required>
+    <button type="submit">Create Ticket</button>
+</form>
+
+<script>
+    function convertSeatToUppercase() {
+        var seatInput = document.getElementById('seatInput');
+        seatInput.value = seatInput.value.toUpperCase();
+    }
+</script>
+
+<%- include('../partials/footer') %>
