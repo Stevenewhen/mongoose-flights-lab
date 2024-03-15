@@ -1,6 +1,4 @@
-<%- include('../partials/header') %>
-
-<h2><%= airline %> Detail</h2>
+<%- include('../partials/header', { pageTitle: 'Airline Detail' }) %>
 <table>
   <thead>
     <tr>
@@ -51,7 +49,7 @@
       <option value="LAX">LAX</option>
       <option value="SAN">SAN</option>
     </select>
-  </label><br>
+  </label>
   <label>Arrival:
     <input type="datetime-local" name="arrival" required>
   </label><br>

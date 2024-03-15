@@ -1,20 +1,20 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header', { pageTitle: 'Flight List' }) %>
 
-<h2>Flight List</h2>
 <table>
   <thead>
     <tr>
       <th>Airline</th>
       <th>Airport</th>
-      <th>Flight #</th>
+      <th>Flight Number</th>
       <th>Departs</th>
       <th>Arrival</th>
+      <th>Details</th>
     </tr>
   </thead>
   <tbody>
     <% flights.forEach(function(f) { %>
       <% const todaysDate = new Date() %>
-      <tr class="<% todaysDate < f.departs ? 'red' : '' %>"">
+      <tr class="<% todaysDate < f.departs ? 'red' : '' %>">
         <td><%= f.airline %> </td>
         <td><%= f.airport %></td>
         <td><%= f.flightNo %></td>
@@ -24,7 +24,11 @@
             <p>Airport: <%= destination.airport %>, Arrival: <%= destination.arrival %></p>
           <% }) %>
         </td>
-        <td><a href="/flights/<%= f._id %>">Show</a></td>
+        <td>
+          <form action="/flights/<%= f._id %>" method="get">
+            <button type="submit">Show</button>
+          </form>
+        </td>
       </tr>
     <% }) %>
   </tbody>
